@@ -2,6 +2,12 @@ main {
   text-align: center;
 }
 
+.btn_ctnr {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .Btn {
   --black: #000000;
   --ch-black: #141414;
