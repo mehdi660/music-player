@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 const App = () => {
-  const CLIENT_ID = "c6b658ec1b5544829e1049238a9b6d0a";
-  const REDIRECT_URI = "http://localhost:3001/";
+  const CLIENT_ID = "a18ef4dbb3364dd49c476468b8bd2a3b";
+  const REDIRECT_URI = "http://localhost:3000/";
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
   const RESPONSE_TYPE = "token";
 
@@ -42,19 +42,22 @@ const App = () => {
       params: {
         q: searchKey,
         type: "artist",
-        limit: 10,
+        limit: 3,
       },
     });
-
+    console.log(data);
     setArtists(data.artists.items);
   };
 
   const renderArtists = () => {
     return artists.map((artist) => {
       return (
-        <div key={artist.id}>
-          <img src={artist.images[0].url} alt={artist.name} />
-          <h3>{artist.name}</h3>
+        <div className="card" key={artist.id}>
+          <div className="card_ctnr">
+            <img width={"50%"} src={artist.images[0].url} alt={artist.name} />
+            <h3>{artist.name}</h3>
+            <h3>Followers: {artist.followers.total}</h3>
+          </div>
         </div>
       );
     });
