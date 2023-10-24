@@ -20,18 +20,24 @@ const Home = () => {
         .find((elem) => elem.startsWith("access_token"))
         .split("=")[1];
 
-      console.log(token);
+      window.location.hash = "";
+      window.localStorage.setItem("token", token);
+      setToken(token);
     }
   }, []);
 
   return (
     <div>
-      <h1>Hello woorld</h1>
-      <a
-        href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}
-      >
-        Login to spotify
-      </a>
+      <h1>Hello world</h1>
+      {!token ? (
+        <a
+          href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}
+        >
+          Login to spotify
+        </a>
+      ) : (
+        <button>Logout</button>
+      )}
     </div>
   );
 };
