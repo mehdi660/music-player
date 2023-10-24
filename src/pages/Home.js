@@ -1,16 +1,34 @@
 import React from "react";
+import { useEffect, useState } from "react";
 
 const Home = () => {
   const CLIENT_ID = "c6b658ec1b5544829e1049238a9b6d0a";
-  const REDIRECT_URI = "http://localhost:3001";
+  const REDIRECT_URI = "http://localhost:3001/";
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
-  const REPONSE_TYPE = "token";
+  const RESPONSE_TYPE = "token";
+
+  const [token, setToken] = useState("");
+
+  useEffect(() => {
+    const hash = window.location.hash;
+    let token = window.localStorage.getItem("token");
+
+    if (!token && hash) {
+      token = hash
+        .substring(1)
+        .split("&")
+        .find((elem) => elem.startsWith("access_token"))
+        .split("=")[1];
+
+      console.log(token);
+    }
+  }, []);
 
   return (
     <div>
-      <h1>Hello world</h1>
+      <h1>Hello woorld</h1>
       <a
-        href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&reponse_type=${REPONSE_TYPE}`}
+        href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}
       >
         Login to spotify
       </a>
