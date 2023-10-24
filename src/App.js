@@ -57,6 +57,11 @@ const App = () => {
             <img width={"50%"} src={artist.images[0].url} alt={artist.name} />
             <h3>{artist.name}</h3>
             <h3>Followers: {artist.followers.total}</h3>
+            <h3>Popularity: {artist.popularity}</h3>
+            {/* <h3>Albums: {artist.albums.total}</h3>
+            <h3>Artists: {artist.artists.total}</h3> */}
+            <h3>Genres: {artist.genres[0] ? artist.genres[0] : "No genres"}</h3>
+            <h3>URL: {artist.external_urls.spotify}</h3>
           </div>
         </div>
       );
