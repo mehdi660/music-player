@@ -49,6 +49,17 @@ const App = () => {
     setArtists(data.artists.items);
   };
 
+  const renderArtists = () => {
+    return artists.map((artist) => {
+      return (
+        <div key={artist.id}>
+          <img src={artist.images[0].url} alt={artist.name} />
+          <h3>{artist.name}</h3>
+        </div>
+      );
+    });
+  };
+
   return (
     <main>
       <h1>Hello world</h1>
@@ -80,6 +91,8 @@ const App = () => {
       ) : (
         <h2>Please login</h2>
       )}
+
+      {renderArtists()}
     </main>
   );
 };
