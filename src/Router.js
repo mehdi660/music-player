@@ -1,8 +1,8 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./home";
-import Feed from "./feed";
-import Player from "./player";
+import Home from "./pages/Home";
+import Feed from "./pages/Feed";
+import Player from "./pages/Player";
 import Trending from "./pages/Trending";
 
 const Router = () => {
