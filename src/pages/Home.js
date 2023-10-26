@@ -1,6 +1,7 @@
-import React from "react";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
+import ArtistCard from "../components/ArtistCard";
+import AlbumCard from "../components/AlbumCard";
 
 const Home = () => {
   const CLIENT_ID = "a18ef4dbb3364dd49c476468b8bd2a3b";
@@ -46,7 +47,6 @@ const Home = () => {
         limit: 5,
       },
     });
-    console.log(data);
     setArtists(data.artists.items);
   };
 
@@ -60,48 +60,23 @@ const Home = () => {
         },
       }
     );
-    console.log(hoveredArtistAlbums);
     setHoveredArtistAlbums(data.items);
+  };
+
+  const renderArtists = () => {
+    return artists.map((artist) => (
+      <ArtistCard key={artist.id} artist={artist} onAlbumClick={searchAlbums} />
+    ));
   };
 
   const renderHoveredArtistAlbums = () => {
     return (
       <div className="hovered-albums">
         {hoveredArtistAlbums.map((album) => (
-          <div key={album.id}>
-            <img width="20%" src={album.images[0].url} alt="" />
-            <h3>{album.name}</h3>
-            {/* Ajoutez d'autres détails de l'album selon vos besoins */}
-          </div>
+          <AlbumCard key={album.id} album={album} />
         ))}
       </div>
     );
-  };
-
-  const renderArtists = () => {
-    return artists.map((artist) => {
-      return (
-        <div key={artist.id} className="card">
-          <div className="card_ctnr">
-            <img
-              onMouseEnter={() => searchAlbums(artist.id)}
-              onMouseLeave={() => setHoveredArtistAlbums([])}
-              width={"30%"}
-              src={artist.images[0].url}
-              alt={artist.name}
-            />
-            <h3>{artist.name}</h3>
-            <h3>Followers: {artist.followers.total}</h3>
-            <h3>Popularity: {artist.popularity}</h3>
-            <h3>Genres: {artist.genres[0] ? artist.genres[0] : "No genres"}</h3>
-            <a href={artist.external_urls.spotify}>URL of the artist </a>
-            <button onClick={() => searchAlbums(artist.id)}>
-              Voir les albums
-            </button>
-          </div>
-        </div>
-      );
-    });
   };
 
   return (
@@ -112,7 +87,7 @@ const Home = () => {
         <a
           href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}
         >
-          Login to spotify
+          Login to Spotify
         </a>
       ) : (
         <div className="btn_ctnr">
