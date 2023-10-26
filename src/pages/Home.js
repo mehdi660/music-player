@@ -54,7 +54,7 @@ const Home = () => {
       return (
         <div className="card" key={artist.id}>
           <div className="card_ctnr">
-            <img width={"50%"} src={artist.images[0].url} alt={artist.name} />
+            <img width={"30%"} src={artist.images[0].url} alt={artist.name} />
             <h3>{artist.name}</h3>
             <h3>Followers: {artist.followers.total}</h3>
             <h3>Popularity: {artist.popularity}</h3>
@@ -90,9 +90,11 @@ const Home = () => {
       )}
 
       {token ? (
-        <form onSubmit={searchArtists}>
+        <form onSubmit={searchArtists} className="search-box">
           <input type="text" onChange={(e) => setSearchKey(e.target.value)} />
-          <button type="submit">Search</button>
+          <button type="submit" className="btn-search">
+            Search
+          </button>
         </form>
       ) : (
         <h2>Please login</h2>
