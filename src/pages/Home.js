@@ -12,6 +12,7 @@ const Home = () => {
   const [searchKey, setSearchKey] = useState("");
   const [artists, setArtists] = useState([]);
   const [album, setAlbum] = useState([]);
+  const [hoveredArtistAlbums, setHoveredArtistAlbums] = useState([]);
 
   useEffect(() => {
     const hash = window.location.hash;
@@ -60,14 +61,31 @@ const Home = () => {
         },
       }
     );
-    console.log(data);
-    setAlbum(data.items);
+    setHoveredArtistAlbums(data.items);
+  };
+
+  const renderHoveredArtistAlbums = () => {
+    return (
+      <div className="hovered-albums">
+        {hoveredArtistAlbums.map((album) => (
+          <div key={album.id}>
+            <h3>{album.name}</h3>
+            {/* Ajoutez d'autres détails de l'album selon vos besoins */}
+          </div>
+        ))}
+      </div>
+    );
   };
 
   const renderArtists = () => {
     return artists.map((artist) => {
       return (
-        <div className="card" key={artist.id}>
+        <div
+          className="card"
+          key={artist.id}
+          onMouseEnter={() => searchAlbums(artist.id)}
+          onMouseLeave={() => setHoveredArtistAlbums([])}
+        >
           <div className="card_ctnr">
             <img width={"30%"} src={artist.images[0].url} alt={artist.name} />
             <h3>{artist.name}</h3>
@@ -86,6 +104,7 @@ const Home = () => {
 
   return (
     <main>
+      {renderHoveredArtistAlbums()}
       <h1>Hello world</h1>
       {!token ? (
         <a
@@ -106,7 +125,6 @@ const Home = () => {
           </button>
         </div>
       )}
-
       {token ? (
         <form onSubmit={searchArtists}>
           <input type="text" onChange={(e) => setSearchKey(e.target.value)} />
@@ -115,7 +133,6 @@ const Home = () => {
       ) : (
         <h2>Please login</h2>
       )}
-
       {renderArtists()}
     </main>
   );
