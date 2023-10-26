@@ -4,7 +4,7 @@ import Home from "./pages/Home";
 import Feed from "./pages/Feed";
 import Player from "./pages/Player";
 import Trending from "./pages/Trending";
-
+import Album from "./pages/Album";
 import Library from "./pages/Library";
 
 const Router = () => {
@@ -16,6 +16,7 @@ const Router = () => {
         <Route path="/player" element={<Player />} />
         <Route path="/trending" element={<Trending />} />
         <Route path="/library" element={<Library />} />
+        <Route path="/album" element={<Album />} />
       </Routes>
     </BrowserRouter>
   );

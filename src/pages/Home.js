@@ -11,6 +11,7 @@ const Home = () => {
   const [token, setToken] = useState("");
   const [searchKey, setSearchKey] = useState("");
   const [artists, setArtists] = useState([]);
+  const [album, setAlbum] = useState([]);
 
   useEffect(() => {
     const hash = window.location.hash;
@@ -49,6 +50,20 @@ const Home = () => {
     setArtists(data.artists.items);
   };
 
+  const searchAlbums = async (artistId) => {
+    const { data } = await axios.get(
+      `https://api.spotify.com/v1/artists/${artistId}/albums`,
+      {
+        headers: { Authorization: `Bearer ${token}` },
+        params: {
+          limit: 5,
+        },
+      }
+    );
+    console.log(data);
+    setAlbum(data.items);
+  };
+
   const renderArtists = () => {
     return artists.map((artist) => {
       return (
@@ -60,6 +75,9 @@ const Home = () => {
             <h3>Popularity: {artist.popularity}</h3>
             <h3>Genres: {artist.genres[0] ? artist.genres[0] : "No genres"}</h3>
             <a href={artist.external_urls.spotify}>URL of the artist </a>
+            <button onClick={() => searchAlbums(artist.id)}>
+              Voir les albums
+            </button>
           </div>
         </div>
       );
@@ -90,11 +108,9 @@ const Home = () => {
       )}
 
       {token ? (
-        <form onSubmit={searchArtists} className="search-box">
+        <form onSubmit={searchArtists}>
           <input type="text" onChange={(e) => setSearchKey(e.target.value)} />
-          <button type="submit" className="btn-search">
-            Search
-          </button>
+          <button type="submit">Search</button>
         </form>
       ) : (
         <h2>Please login</h2>
