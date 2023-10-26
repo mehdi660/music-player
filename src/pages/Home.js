@@ -12,7 +12,9 @@ const Home = () => {
   const [token, setToken] = useState("");
   const [searchKey, setSearchKey] = useState("");
   const [artists, setArtists] = useState([]);
+  const [hoveredArtistId, setHoveredArtistId] = useState(null);
   const [hoveredArtistAlbums, setHoveredArtistAlbums] = useState([]);
+  const [selectedArtistId, setSelectedArtistId] = useState(null);
 
   useEffect(() => {
     const hash = window.location.hash;
@@ -63,9 +65,25 @@ const Home = () => {
     setHoveredArtistAlbums(data.items);
   };
 
+  const handleMouseEnter = (artistId) => {
+    setHoveredArtistId(artistId);
+    searchAlbums(artistId);
+  };
+
+  const handleMouseLeave = () => {
+    setHoveredArtistId(null);
+    setHoveredArtistAlbums([]);
+  };
+
   const renderArtists = () => {
     return artists.map((artist) => (
-      <ArtistCard key={artist.id} artist={artist} onAlbumClick={searchAlbums} />
+      <ArtistCard
+        key={artist.id}
+        artist={artist}
+        onArtistHover={handleMouseEnter}
+        onAlbumLeave={handleMouseLeave}
+        isSelected={artist.id === selectedArtistId}
+      />
     ));
   };
 
