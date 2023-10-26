@@ -11,7 +11,6 @@ const Home = () => {
   const [token, setToken] = useState("");
   const [searchKey, setSearchKey] = useState("");
   const [artists, setArtists] = useState([]);
-  const [album, setAlbum] = useState([]);
   const [hoveredArtistAlbums, setHoveredArtistAlbums] = useState([]);
 
   useEffect(() => {
@@ -57,10 +56,11 @@ const Home = () => {
       {
         headers: { Authorization: `Bearer ${token}` },
         params: {
-          limit: 5,
+          limit: 4,
         },
       }
     );
+    console.log(hoveredArtistAlbums);
     setHoveredArtistAlbums(data.items);
   };
 
@@ -69,6 +69,7 @@ const Home = () => {
       <div className="hovered-albums">
         {hoveredArtistAlbums.map((album) => (
           <div key={album.id}>
+            <img width="20%" src={album.images[0].url} alt="" />
             <h3>{album.name}</h3>
             {/* Ajoutez d'autres détails de l'album selon vos besoins */}
           </div>
@@ -80,14 +81,15 @@ const Home = () => {
   const renderArtists = () => {
     return artists.map((artist) => {
       return (
-        <div
-          className="card"
-          key={artist.id}
-          onMouseEnter={() => searchAlbums(artist.id)}
-          onMouseLeave={() => setHoveredArtistAlbums([])}
-        >
+        <div key={artist.id} className="card">
           <div className="card_ctnr">
-            <img width={"30%"} src={artist.images[0].url} alt={artist.name} />
+            <img
+              onMouseEnter={() => searchAlbums(artist.id)}
+              onMouseLeave={() => setHoveredArtistAlbums([])}
+              width={"30%"}
+              src={artist.images[0].url}
+              alt={artist.name}
+            />
             <h3>{artist.name}</h3>
             <h3>Followers: {artist.followers.total}</h3>
             <h3>Popularity: {artist.popularity}</h3>
