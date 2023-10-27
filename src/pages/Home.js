@@ -8,6 +8,7 @@ const Home = () => {
   const [searchKey, setSearchKey] = useState("");
   const [artists, setArtists] = useState([]);
   const [selectedArtistId, setSelectedArtistId] = useState(null);
+  const [errorMsg, setErrorMsg] = useState(false);
 
   useEffect(() => {
     const hash = window.location.hash;
@@ -34,16 +35,32 @@ const Home = () => {
 
   const handleSearch = async (e) => {
     e.preventDefault();
-    const { data } = await axios.get(`https://api.spotify.com/v1/search`, {
-      headers: { Authorization: `Bearer ${token}` },
-      params: {
-        q: searchKey,
-        type: "artist",
-        limit: 20,
-      },
-    });
-    console.log(data);
-    setArtists(data.artists.items);
+    try {
+      const { data } = await axios.get(`https://api.spotify.com/v1/search`, {
+        headers: { Authorization: `Bearer ${token}` },
+        params: {
+          q: searchKey,
+          type: "artist",
+          limit: 20,
+        },
+      });
+
+      if (data.artists.items.length === 0) {
+        console.log("Aucun artiste trouvé.");
+        setErrorMsg(true);
+        console.log(errorMsg);
+        // Vous pouvez également afficher un message à l'utilisateur ou effectuer d'autres actions ici
+      } else {
+        // Des artistes ont été trouvés, mettez à jour la liste des artistes
+        setErrorMsg(false);
+        setArtists(data.artists.items);
+      }
+    } catch (error) {
+      // Gérer les erreurs de l'API ici, par exemple, afficher un message d'erreur à l'utilisateur
+      console.error("Erreur lors de la recherche d'artistes :", error);
+      setErrorMsg(true);
+      // Vous pouvez également afficher un message d'erreur à l'utilisateur ou effectuer d'autres actions ici
+    }
   };
 
   const renderArtists = () => {
@@ -76,11 +93,8 @@ const Home = () => {
             <button type="submit">Search</button>
           </form>
         )}
-        {token ? (
-          <div className="artist">{renderArtists()}</div>
-        ) : (
-          <h2>Please login</h2>
-        )}
+        {errorMsg && <p>No artist found, try someone else !</p>}
+        {token && !errorMsg && <div className="artist">{renderArtists()}</div>}
       </main>
     </div>
   );
