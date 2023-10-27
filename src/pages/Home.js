@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import ArtistCard from "../components/ArtistCard";
-import AlbumCard from "../components/AlbumCard";
 
 const Home = () => {
   const CLIENT_ID = "a18ef4dbb3364dd49c476468b8bd2a3b";
@@ -12,8 +11,6 @@ const Home = () => {
   const [token, setToken] = useState("");
   const [searchKey, setSearchKey] = useState("");
   const [artists, setArtists] = useState([]);
-  const [hoveredArtistId, setHoveredArtistId] = useState(null);
-  const [hoveredArtistAlbums, setHoveredArtistAlbums] = useState([]);
   const [selectedArtistId, setSelectedArtistId] = useState(null);
 
   useEffect(() => {
@@ -62,17 +59,6 @@ const Home = () => {
         },
       }
     );
-    setHoveredArtistAlbums(data.items);
-  };
-
-  const handleMouseEnter = (artistId) => {
-    setHoveredArtistId(artistId);
-    searchAlbums(artistId);
-  };
-
-  const handleMouseLeave = () => {
-    setHoveredArtistId(null);
-    setHoveredArtistAlbums([]);
   };
 
   const renderArtists = () => {
@@ -80,21 +66,9 @@ const Home = () => {
       <ArtistCard
         key={artist.id}
         artist={artist}
-        onArtistHover={handleMouseEnter}
-        onAlbumLeave={handleMouseLeave}
         isSelected={artist.id === selectedArtistId}
       />
     ));
-  };
-
-  const renderHoveredArtistAlbums = () => {
-    return (
-      <div className="hovered-albums">
-        {hoveredArtistAlbums.map((album) => (
-          <AlbumCard key={album.id} album={album} />
-        ))}
-      </div>
-    );
   };
 
   return (
@@ -135,7 +109,6 @@ const Home = () => {
         <h1>Hello world</h1>
         {token ? (
           <>
-            {renderHoveredArtistAlbums()}
             <div className="artist">{renderArtists()}</div>
           </>
         ) : null}
