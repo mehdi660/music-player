@@ -1,10 +1,15 @@
+import React from "react";
+import nothing from "../img/nothing.png";
+
 const ArtistCard = ({ artist, isSelected }) => {
   return (
     <div className={`card ${isSelected ? "selected" : ""}`}>
       <div className="card_ctnr">
         <h3 id="album_page">Go to album page</h3>
-        {artist.images[0] && (
+        {artist.images[0] ? (
           <img width={"50%"} src={artist.images[0].url} alt={artist.name} />
+        ) : (
+          <img width={"50%"} src={nothing} alt={artist.name} />
         )}
         <h3>{artist.name}</h3>
         <h3>Followers: {artist.followers.total}</h3>
