@@ -1,12 +1,6 @@
 import React from "react";
 
-const ArtistCard = ({
-  artist,
-  onArtistHover,
-  onAlbumLeave,
-  isSelected,
-  renderArtists,
-}) => {
+const ArtistCard = ({ artist, onArtistHover, onAlbumLeave, isSelected }) => {
   return (
     <div className={`card ${isSelected ? "selected" : ""}`}>
       <div className="card_ctnr">
