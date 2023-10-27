@@ -120,7 +120,11 @@ const Home = () => {
         )}
         {token ? (
           <form onSubmit={searchArtists}>
-            <input type="text" onChange={(e) => setSearchKey(e.target.value)} />
+            <input
+              placeholder="Search a musical artist"
+              type="text"
+              onChange={(e) => setSearchKey(e.target.value)}
+            />
             <button type="submit">Search</button>
           </form>
         ) : (
