@@ -1,0 +1,13 @@
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 50px;
+}
+
+.card_ctnr {
+  width: 50%;
+  border: 1px solid black;
+  border-radius: 20px;
+  background-color: aliceblue;
+}

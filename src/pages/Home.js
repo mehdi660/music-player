@@ -39,14 +39,19 @@ const Home = () => {
       params: {
         q: searchKey,
         type: "artist",
-        limit: 5,
+        limit: 20,
       },
     });
+    console.log(data);
     setArtists(data.artists.items);
   };
 
   const renderArtists = () => {
-    return artists.map((artist) => (
+    const sortedArtists = artists.sort(
+      (a, b) => b.followers.total - a.followers.total
+    );
+
+    return sortedArtists.map((artist) => (
       <ArtistCard
         key={artist.id}
         artist={artist}
