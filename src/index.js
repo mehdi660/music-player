@@ -6,6 +6,7 @@ import "./styles/app.css";
 import "./styles/home.css";
 import "./styles/album.css";
 import "./styles/artist.css";
+import "./styles/header.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
