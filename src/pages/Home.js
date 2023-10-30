@@ -48,7 +48,6 @@ const Home = () => {
       if (data.artists.items.length === 0) {
         console.log("Aucun artiste trouvé.");
         setErrorMsg(true);
-        console.log(errorMsg);
         // Vous pouvez également afficher un message à l'utilisateur ou effectuer d'autres actions ici
       } else {
         // Des artistes ont été trouvés, mettez à jour la liste des artistes
