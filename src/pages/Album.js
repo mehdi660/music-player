@@ -6,11 +6,20 @@ const Album = () => {
   let token = window.localStorage.getItem("token");
   const id = window.location.pathname.split("/")[2];
 
-  const getAlbum = async () => {
+  const getAlbum = async (e) => {
+    e.preventDefault();
     try {
-      await axios.get(`https://api.spotify.com/v1/albums/${id}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const { data } = await axios.get(
+        `https://api.spotify.com/v1/artists/${id}/albums`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+          params: {
+            type: "album",
+            limit: 5,
+          },
+        }
+      );
+      console.log(data);
     } catch (error) {
       // Gérer les erreurs de l'API ici, par exemple, afficher un message d'erreur à l'utilisateur
       console.error("Erreur lors de la recherche d'artistes :", error);
