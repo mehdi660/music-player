@@ -7,11 +7,11 @@ const ArtistCard = ({ artist, isSelected }) => {
     <div className={`card ${isSelected ? "selected" : ""}`}>
       <div className="card_ctnr">
         {artist.images[0] ? (
-          <NavLink to={`/album`}>
+          <NavLink to={`/albums/${artist.id}`}>
             <img width={"50%"} src={artist.images[0].url} alt={artist.name} />
           </NavLink>
         ) : (
-          <NavLink to={`/album/${artist.id}`}>
+          <NavLink to={`/albums/${artist.id}`}>
             <img width={"50%"} src={nothing} alt={artist.name} />
           </NavLink>
         )}

@@ -1,7 +1,7 @@
 import React from "react";
 
-const Navigation = () => {
+const Tracks = () => {
   return <div></div>;
 };
 
-export default Navigation;
+export default Tracks;
