@@ -5,3 +5,21 @@ p {
 #artist_name {
   text-align: center;
 }
+
+.album-ctnr {
+  width: 50%;
+  border: 1px solid black;
+  border-radius: 20px;
+  background-color: aliceblue;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.album {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 50px;
+}
