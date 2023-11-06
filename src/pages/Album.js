@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
 import axios from "axios";
 import AlbumCard from "../components/AlbumCard";
+import Header from "../components/Header";
 
 const Album = () => {
   const [artistName, setArtistName] = useState("");
@@ -38,9 +38,7 @@ const Album = () => {
 
   return (
     <div>
-      <NavLink to={"/"}>
-        <p>Return to homepage</p>
-      </NavLink>
+      <Header />
       <h1 id="artist_name">Albums / single of {artistName}</h1>
       <div className="album-list">
         {albums.map((album) => (

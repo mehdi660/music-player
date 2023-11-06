@@ -7,20 +7,27 @@ import {
 } from "../config/config";
 import { FaHome } from "react-icons/fa";
 import { CgProfile } from "react-icons/cg";
+import { NavLink } from "react-router-dom";
 
 const Header = ({ token, onLogout }) => {
+  const isHomePage = window.location.pathname === "/";
+
   return (
     <header>
-      <FaHome id="home" />
+      <NavLink to={"/"}>
+        <FaHome id="home" />
+      </NavLink>
       <CgProfile id="profile" />
 
-      {!token ? (
+      {isHomePage && !token && (
         <a
           href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}
         >
           Login to Spotify
         </a>
-      ) : (
+      )}
+
+      {token && (
         <div className="btn_ctnr">
           <button onClick={onLogout} className="Btn">
             <div className="sign">
