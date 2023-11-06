@@ -6,13 +6,14 @@ import {
   RESPONSE_TYPE,
 } from "../config/config";
 import { FaHome } from "react-icons/fa";
+import { CgProfile } from "react-icons/cg";
 
 const Header = ({ token, onLogout }) => {
   return (
     <header>
-      <div>
-        <FaHome />
-      </div>
+      <FaHome id="home" />
+      <CgProfile id="profile" />
+
       {!token ? (
         <a
           href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}

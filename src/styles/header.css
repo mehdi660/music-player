@@ -4,3 +4,10 @@ header {
   justify-content: center;
   align-items: center;
 }
+
+#home,
+#profile {
+  width: 40px;
+  height: 40px;
+  color: #e1e1e1;
+}

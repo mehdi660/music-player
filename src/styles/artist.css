@@ -27,3 +27,23 @@
 h3 {
   color: rgba(3, 1, 1, 0.872);
 }
+
+/* ArtistCard.css */
+.card_ctnr {
+  position: relative;
+}
+
+.hover-text {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: rgba(0, 0, 0, 0.747);
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+.card_ctnr:hover .hover-text.visible {
+  display: block;
+}

@@ -7,26 +7,19 @@ const ArtistCard = ({ artist }) => {
 
   return (
     <div className="card">
-      <div className={`card_ctnr ${isHovered ? "hovered" : ""}`}>
+      <div className={`card_ctnr `}>
         <NavLink to={`/albums/${artist.id}`}>
-          {artist.images[0] ? (
-            <img
-              width={"50%"}
-              src={artist.images[0].url}
-              alt={artist.name}
-              onMouseEnter={() => setIsHovered(true)}
-              onMouseLeave={() => setIsHovered(false)}
-            />
-          ) : (
-            <img
-              width={"50%"}
-              src={nothing}
-              alt={artist.name}
-              onMouseEnter={() => setIsHovered(true)}
-              onMouseLeave={() => setIsHovered(false)}
-            />
-          )}
-          {isHovered && <p>Go to album page</p>}
+          <img
+            className={` ${isHovered ? "hovered" : ""}`}
+            width={"50%"}
+            src={artist.images[0] ? artist.images[0].url : nothing}
+            alt={artist.name}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+          />
+          <p className={`hover-text ${isHovered ? "visible" : ""}`}>
+            Go to album page
+          </p>
         </NavLink>
         <h3>{artist.name}</h3>
         <h3>Followers: {artist.followers.total}</h3>
