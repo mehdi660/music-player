@@ -3,6 +3,10 @@ header {
   text-align: center;
 }
 
+h1 {
+  color: #e1e1e1;
+}
+
 .btn_ctnr {
   display: flex;
   align-items: center;
