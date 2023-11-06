@@ -18,7 +18,6 @@ const Album = () => {
             headers: { Authorization: `Bearer ${token}` },
             params: {
               type: "album",
-              limit: 5,
             },
           }
         );
@@ -42,7 +41,7 @@ const Album = () => {
       <NavLink to={"/"}>
         <p>Return to homepage</p>
       </NavLink>
-      <h1 id="artist_name">Albums of {artistName}</h1>
+      <h1 id="artist_name">Albums / single of {artistName}</h1>
       <div className="album-list">
         {albums.map((album) => (
           <AlbumCard key={album.id} album={album} />
