@@ -10,4 +10,11 @@ header {
   width: 40px;
   height: 40px;
   color: #e1e1e1;
+  transition: 0.2s ease-in-out;
+}
+
+#profile:hover {
+  color: #1faa13;
+  cursor: pointer;
+  transform: scale(1.1);
 }

@@ -9,6 +9,7 @@ const Home = () => {
   const [artists, setArtists] = useState([]);
   const [selectedArtistId, setSelectedArtistId] = useState(null);
   const [errorMsg, setErrorMsg] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const hash = window.location.hash;
@@ -35,6 +36,8 @@ const Home = () => {
 
   const handleSearch = async (e) => {
     e.preventDefault();
+    setIsLoading(true); // Activer le loader
+
     try {
       const { data } = await axios.get(`https://api.spotify.com/v1/search`, {
         headers: { Authorization: `Bearer ${token}` },
@@ -46,19 +49,16 @@ const Home = () => {
       });
 
       if (data.artists.items.length === 0) {
-        console.log("Aucun artiste trouvé.");
         setErrorMsg(true);
-        // Vous pouvez également afficher un message à l'utilisateur ou effectuer d'autres actions ici
       } else {
-        // Des artistes ont été trouvés, mettez à jour la liste des artistes
         setErrorMsg(false);
         setArtists(data.artists.items);
       }
     } catch (error) {
-      // Gérer les erreurs de l'API ici, par exemple, afficher un message d'erreur à l'utilisateur
       console.error("Erreur lors de la recherche d'artistes :", error);
       setErrorMsg(true);
-      // Vous pouvez également afficher un message d'erreur à l'utilisateur ou effectuer d'autres actions ici
+    } finally {
+      setIsLoading(false); // Désactiver le loader une fois la recherche terminée
     }
   };
 
@@ -92,6 +92,7 @@ const Home = () => {
             <button type="submit">Search</button>
           </form>
         )}
+        {isLoading && <div className="loader">Loading...</div>}
         {errorMsg && <p>No artist found, try someone else !</p>}
         {token && !errorMsg && <div className="artist">{renderArtists()}</div>}
       </main>

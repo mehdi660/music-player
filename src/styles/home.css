@@ -5,6 +5,8 @@ header {
 
 h1 {
   color: #e1e1e1;
+  text-align: center;
+  margin-top: 20px;
 }
 
 .btn_ctnr {
