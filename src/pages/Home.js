@@ -7,7 +7,7 @@ const Home = () => {
   const [token, setToken] = useState("");
   const [searchKey, setSearchKey] = useState("");
   const [artists, setArtists] = useState([]);
-  const [selectedArtistId, setSelectedArtistId] = useState(null);
+  const [selectedArtistId] = useState(null);
   const [errorMsg, setErrorMsg] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 

@@ -1,8 +1,10 @@
 header {
-  margin-top: 20px;
   display: flex;
   justify-content: space-around;
   align-items: center;
+
+  padding: 20px;
+  background-color: #018749;
 }
 
 #home,
@@ -14,7 +16,13 @@ header {
 }
 
 #profile:hover {
-  color: #1faa13;
+  color: #094004;
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+#home:hover {
+  color: #094004;
   cursor: pointer;
   transform: scale(1.1);
 }

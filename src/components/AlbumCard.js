@@ -9,7 +9,10 @@ const AlbumCard = ({ album }) => {
     <div className="album">
       <div className="album-ctnr">
         <img src={album.images[1].url} alt={album.name} />
-        <h3>{album.name}</h3>
+        <div className="info_album">
+          <h3>Name : {album.name}</h3>
+          <h3>Total tracks : {album.total_tracks}</h3>
+        </div>
       </div>
     </div>
   );
