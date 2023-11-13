@@ -17,7 +17,7 @@ const Tracks = (album) => {
           }
         );
       } catch (error) {
-        console.error("Erreur lors de la recherche d'albums :", error);
+        console.error("Erreur lors de la recherche de son :", error);
       }
     };
 

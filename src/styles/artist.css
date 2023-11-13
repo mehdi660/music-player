@@ -7,7 +7,7 @@
 
 .card_ctnr {
   width: 50%;
-  border: 1px solid black;
+  box-shadow: 2px 2px 10px rgba(186, 186, 186, 0.434);
   border-radius: 20px;
   background-color: #018749;
   padding: 20px;
@@ -26,11 +26,6 @@
 
 h3 {
   color: rgba(3, 1, 1, 0.872);
-}
-
-/* ArtistCard.css */
-.card_ctnr {
-  position: relative;
 }
 
 .hover-text {

@@ -12,6 +12,7 @@ const AlbumCard = ({ album }) => {
         <div className="info_album">
           <h3>Name : {album.name}</h3>
           <h3>Total tracks : {album.total_tracks}</h3>
+          <h3>Release date : {album.release_date}</h3>
         </div>
       </div>
     </div>
