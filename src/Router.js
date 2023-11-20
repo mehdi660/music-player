@@ -17,7 +17,7 @@ const Router = () => {
         <Route path="/player" element={<Player />} />
         <Route path="/trending" element={<Trending />} />
         <Route path="/library" element={<Library />} />
-        <Route path="/tracks/:id" element={<Tracks />} />
+        <Route path="/tracks" element={<Tracks />} />
         {/* Utilisez :id pour capturer l'ID de l'artiste dans l'URL */}
         <Route path="/albums/:id" element={<Album />} />
       </Routes>

@@ -5,17 +5,25 @@ import { NavLink } from "react-router-dom";
 const ArtistCard = ({ artist }) => {
   const [isHovered, setIsHovered] = useState(false);
 
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
+
   return (
     <div className="card">
-      <div className={`card_ctnr `}>
+      <div className={`card_ctnr`}>
         <NavLink to={`/albums/${artist.id}`}>
           <img
-            className={` ${isHovered ? "hovered" : ""}`}
+            className={`${isHovered ? "hovered" : ""}`}
             width={"50%"}
             src={artist.images[0] ? artist.images[0].url : nothing}
             alt={artist.name}
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
           />
           <p className={`hover-text ${isHovered ? "visible" : ""}`}>
             Go to album page

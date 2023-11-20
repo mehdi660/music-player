@@ -1,6 +1,8 @@
 import React from "react";
 
 import axios from "axios";
+import TracksCard from "../components/TracksCard";
+import Header from "../components/Header";
 
 const Tracks = ({ id, album }) => {
   const token = window.localStorage.getItem("token");
@@ -27,7 +29,8 @@ const Tracks = ({ id, album }) => {
 
   return (
     <div>
-      <h1>{}</h1>
+      <Header />
+      <TracksCard />
     </div>
   );
 };

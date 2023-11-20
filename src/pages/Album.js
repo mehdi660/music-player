@@ -3,11 +3,12 @@ import axios from "axios";
 import AlbumCard from "../components/AlbumCard";
 import Header from "../components/Header";
 import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 const Album = () => {
   const [artistName, setArtistName] = useState("");
   const [albums, setAlbums] = useState([]);
-  const id = window.location.pathname.split("/")[2];
+  const id = useParams().id; // Utilisez useParams() pour obtenir les paramètres de l'URL
   const token = window.localStorage.getItem("token");
 
   useEffect(() => {
@@ -22,7 +23,6 @@ const Album = () => {
             },
           }
         );
-
         if (data.items && data.items.length > 0) {
           setArtistName(data.items[0].artists[0].name);
           setAlbums(data.items);
@@ -45,7 +45,7 @@ const Album = () => {
         {albums.map((album) => (
           <div key={album.id}>
             <AlbumCard album={album} />
-            <Link to={`/tracks/${album.id}`}>View Tracks</Link>
+            <Link to={`${album.id}/tracks`}>View Tracks</Link>
           </div>
         ))}
       </div>
