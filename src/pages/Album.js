@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import AlbumCard from "../components/AlbumCard";
 import Header from "../components/Header";
+import { Link } from "react-router-dom";
 
 const Album = () => {
   const [artistName, setArtistName] = useState("");
@@ -42,7 +43,10 @@ const Album = () => {
       <h1 id="artist_name">Albums / single of {artistName}</h1>
       <div className="album-list">
         {albums.map((album) => (
-          <AlbumCard key={album.id} album={album} />
+          <div key={album.id}>
+            <AlbumCard album={album} />
+            <Link to={`/tracks/${album.id}`}>View Tracks</Link>
+          </div>
         ))}
       </div>
     </div>
