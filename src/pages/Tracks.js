@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import TracksCard from "../components/TracksCard";
@@ -7,8 +7,9 @@ import Header from "../components/Header";
 const Tracks = ({ album }) => {
   const { id } = useParams();
   const token = window.localStorage.getItem("token");
+  const [data, setData] = useState(null);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const getTracks = async () => {
       try {
         const { data } = await axios.get(
@@ -20,6 +21,7 @@ const Tracks = ({ album }) => {
           }
         );
         console.log(data);
+        setData(data);
       } catch (error) {
         console.error("Erreur lors de la recherche de son :", error);
       }
@@ -30,7 +32,7 @@ const Tracks = ({ album }) => {
   return (
     <div>
       <Header />
-      <TracksCard />
+      {data && <TracksCard data={data} />}
     </div>
   );
 };
