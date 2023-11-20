@@ -8,7 +8,7 @@ import { useParams } from "react-router-dom";
 const Album = () => {
   const [artistName, setArtistName] = useState("");
   const [albums, setAlbums] = useState([]);
-  const id = useParams().id; // Utilisez useParams() pour obtenir les paramètres de l'URL
+  const id = useParams().id;
   const token = window.localStorage.getItem("token");
 
   useEffect(() => {

@@ -1,10 +1,11 @@
 import React from "react";
-
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import TracksCard from "../components/TracksCard";
 import Header from "../components/Header";
 
-const Tracks = ({ id, album }) => {
+const Tracks = ({ album }) => {
+  const { id } = useParams();
   const token = window.localStorage.getItem("token");
 
   React.useEffect(() => {
@@ -23,7 +24,6 @@ const Tracks = ({ id, album }) => {
         console.error("Erreur lors de la recherche de son :", error);
       }
     };
-
     getTracks();
   }, [id, token]);
 
