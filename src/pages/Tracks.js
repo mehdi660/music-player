@@ -4,7 +4,7 @@ import axios from "axios";
 import TracksCard from "../components/TracksCard";
 import Header from "../components/Header";
 
-const Tracks = ({ album }) => {
+const Tracks = () => {
   const { id } = useParams();
   const token = window.localStorage.getItem("token");
   const [data, setData] = useState(null);
