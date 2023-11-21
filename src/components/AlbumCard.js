@@ -11,13 +11,13 @@ const AlbumCard = ({ album }) => {
   return (
     <article className="album" key={album.id}>
       <div className="album-ctnr">
-        <NavLink to={"/tracks"}>
+        <NavLink to={`${album.id}/tracks`}>
           <img src={images[1].url} alt={name} />
         </NavLink>
         <div className="info_album">
-          <h3>Nom : {name}</h3>
-          <h3>Nombre de pistes : {total_tracks}</h3>
-          <h3>Date de sortie : {release_date}</h3>
+          <h3>Name : {name}</h3>
+          <h3>Total tracks : {total_tracks}</h3>
+          <h3>Release date : {release_date}</h3>
         </div>
       </div>
     </article>
