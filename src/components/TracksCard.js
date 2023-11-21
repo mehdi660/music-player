@@ -5,10 +5,9 @@ const TracksCard = ({ data }) => {
     return null;
   }
 
-  const trackList = [];
-  data.items.forEach((track) => {
-    trackList.push(<li key={track.id}>{track.name}</li>);
-  });
+  const trackList = data.items.map((track) => (
+    <li key={track.id}>{track.name}</li>
+  ));
 
   return (
     <>

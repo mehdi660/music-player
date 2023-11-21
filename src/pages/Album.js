@@ -7,7 +7,7 @@ import { useParams } from "react-router-dom";
 const Album = () => {
   const [artistName, setArtistName] = useState("");
   const [albums, setAlbums] = useState([]);
-  const id = useParams().id;
+  const { id } = useParams();
   const token = window.localStorage.getItem("token");
 
   useEffect(() => {
@@ -22,6 +22,7 @@ const Album = () => {
             },
           }
         );
+
         if (data.items && data.items.length > 0) {
           setArtistName(data.items[0].artists[0].name);
           setAlbums(data.items);
@@ -39,7 +40,7 @@ const Album = () => {
   return (
     <div>
       <Header />
-      <h1 id="artist_name">Albums / single of {artistName}</h1>
+      <h1 id="artist_name">Albums / single de {artistName}</h1>
       <div className="album-list">
         {albums.map((album) => (
           <div key={album.id}>
