@@ -7,16 +7,16 @@ const TracksCard = ({ data }) => {
   }
 
   const trackList = data.items.map((track) => (
-    <li key={track.id}>
+    <li className="tracks" key={track.id}>
       {track.name} <FaHeart />
     </li>
   ));
 
   return (
-    <>
+    <section className="tracks_main">
       <h1>Album track of "{data.items[0].name}"</h1>
       <ul>{trackList}</ul>
-    </>
+    </section>
   );
 };
 
