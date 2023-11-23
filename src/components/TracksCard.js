@@ -16,7 +16,6 @@ const TracksCard = ({ data }) => {
     <>
       <h1>Album track of "{data.items[0].name}"</h1>
       <ul>{trackList}</ul>
-      <button>Want to listen this album ? Click on me !</button>
     </>
   );
 };
