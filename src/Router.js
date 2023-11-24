@@ -7,6 +7,7 @@ import Trending from "./pages/Trending";
 import Album from "./pages/Album";
 import Library from "./pages/Library";
 import Tracks from "./pages/Tracks";
+import Profile from "./pages/Profile";
 
 const Router = () => {
   return (
@@ -17,6 +18,7 @@ const Router = () => {
         <Route path="/player" element={<Player />} />
         <Route path="/trending" element={<Trending />} />
         <Route path="/library" element={<Library />} />
+        <Route path="/profile" element={<Profile />} />
         <Route path="albums/:id/:id/tracks" element={<Tracks />} />
         {/* Utilisez :id pour capturer l'ID de l'artiste dans l'URL */}
         <Route path="/albums/:id" element={<Album />} />

@@ -17,7 +17,9 @@ const Header = ({ token, onLogout }) => {
       <NavLink to={"/"}>
         <FaHome id="home" />
       </NavLink>
-      <CgProfile id="profile" />
+      <NavLink to={"/profile"}>
+        <CgProfile id="profile" />
+      </NavLink>
 
       {isHomePage && !token && (
         <a

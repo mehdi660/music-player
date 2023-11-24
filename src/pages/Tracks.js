@@ -25,7 +25,6 @@ const Tracks = () => {
               },
             }
           );
-          console.log(data);
           setData(data);
           // Mettre les données en cache
           localStorage.setItem(`tracksData_${id}`, JSON.stringify(data));
