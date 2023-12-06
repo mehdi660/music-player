@@ -4,6 +4,7 @@ import axios from "axios";
 const Profile = () => {
   const token = localStorage.getItem("token");
   const [data, setData] = useState("");
+  const idUser = data.id;
 
   useEffect(() => {
     const getProfile = async () => {
@@ -24,8 +25,9 @@ const Profile = () => {
     <>
       <Header />
       <main>
-        <h1>Profile</h1>
-        <p>Your name is {data.display_name}</p>
+        <h1>Profile page</h1>
+        <p>{idUser}</p>
+        <p>{data.display_name}</p>
       </main>
     </>
   );
